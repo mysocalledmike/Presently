@@ -1,0 +1,13 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Debug Android App",
+            "request": "launch",
+            "mainClass": "journal.gratitude.com.gratitudejournal.GratitudeApplication",
+            "projectName": "app",
+            "vmArgs": "-Djava.home=/opt/homebrew/opt/openjdk@11/libexec/openjdk.jdk/Contents/Home"
+        }
+    ]
+}
