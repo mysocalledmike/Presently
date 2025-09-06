@@ -38,30 +38,30 @@ class SearchFragmentInstrumentedTest {
     @Test
     fun search_showsResults() {
         launchFragmentInHiltContainer<SearchFragment>(
-            themeResId = R.style.Base_AppTheme
+            themeResId = com.presently.ui.R.style.Base_AppTheme
         )
 
-        onView(withId(R.id.search_text)).perform(
+        onView(withId(com.presently.ui.R.id.search_text)).perform(
             typeText("query!")
         )
 
         //wait for debounce to perform search
         onView(isRoot()).perform(waitFor(400))
 
-        onView(withId(R.id.no_results_icon)).check(ViewAssertions.matches(not(isDisplayed())))
-        onView(withId(R.id.search_results)).check(withItemCount(2))
+        onView(withId(com.presently.ui.R.id.no_results_icon)).check(ViewAssertions.matches(not(isDisplayed())))
+        onView(withId(com.presently.ui.R.id.search_results)).check(withItemCount(2))
     }
 
     @Test
     fun search_doesntSearchEmptyStrings() {
         launchFragmentInHiltContainer<SearchFragment>(
-            themeResId = R.style.Base_AppTheme
+            themeResId = com.presently.ui.R.style.Base_AppTheme
         )
 
-        onView(withId(R.id.search_text)).perform(
+        onView(withId(com.presently.ui.R.id.search_text)).perform(
             typeText("")
         )
 
-        onView(withId(R.id.search_results)).check(withItemCount(0))
+        onView(withId(com.presently.ui.R.id.search_results)).check(withItemCount(0))
     }
 }

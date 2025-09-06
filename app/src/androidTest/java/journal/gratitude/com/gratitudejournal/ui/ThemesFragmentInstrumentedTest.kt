@@ -23,10 +23,10 @@ class ThemesFragmentInstrumentedTest {
     @Test
     fun themes_are_presented() {
         launchFragmentInHiltContainer<ThemeFragment>(
-            themeResId = R.style.Base_AppTheme
+            themeResId = com.presently.ui.R.style.Base_AppTheme
         )
 
-        Espresso.onView(ViewMatchers.withId(R.id.themes))
+        Espresso.onView(ViewMatchers.withId(com.presently.ui.R.id.themes))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
     }
 

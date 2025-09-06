@@ -26,11 +26,11 @@ class TimelineAdapter(
         viewType: Int
     ): TimelineViewHolder {
         return when (viewType) {
-            R.layout.item_timeline_entry -> {
+            com.presently.ui.R.layout.item_timeline_entry -> {
                 val binding = ItemTimelineEntryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
                 TimelineViewHolder.EntryViewHolder(binding)
             }
-            R.layout.item_milestone -> {
+            com.presently.ui.R.layout.item_milestone -> {
                 val binding = ItemMilestoneBinding.inflate(LayoutInflater.from(parent.context), parent, false)
                 TimelineViewHolder.MilestoneViewHolder(binding)
             }
@@ -42,8 +42,8 @@ class TimelineAdapter(
 
     override fun getItemViewType(position: Int): Int {
         return when (getItem(position)) {
-            is Entry -> R.layout.item_timeline_entry
-            is Milestone -> R.layout.item_milestone
+            is Entry -> com.presently.ui.R.layout.item_timeline_entry
+            is Milestone -> com.presently.ui.R.layout.item_milestone
         }
     }
 
@@ -84,7 +84,7 @@ class TimelineAdapter(
                 binding.content.text = viewModel.content
                 binding.content.maxLines = viewModel.maxLines
                 val hintTextResource =
-                    if (viewModel.isCurrentDate()) R.string.what_are_you_thankful_for_today else R.string.what_are_you_thankful_for_yesterday
+                    if (viewModel.isCurrentDate()) com.presently.strings.R.string.what_are_you_thankful_for_today else com.presently.strings.R.string.what_are_you_thankful_for_yesterday
                 binding.emptyState.text = binding.root.context.resources.getText(hintTextResource)
                 binding.emptyState.visibility = viewModel.isEmptyState()
 

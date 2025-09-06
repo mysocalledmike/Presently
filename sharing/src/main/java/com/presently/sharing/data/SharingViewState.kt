@@ -15,9 +15,9 @@ data class SharingViewState(
     val dateString: String,
     val viewDesign: SharingViewDesign = SharingViewDesign(
         "original",
-        R.color.originalTimelineColor,
-        R.color.originalTimelineColor,
-        R.color.originalBackgroundColor,
+        com.presently.ui.R.color.originalTimelineColor,
+        com.presently.ui.R.color.originalTimelineColor,
+        com.presently.ui.R.color.originalBackgroundColor,
     ),
     val clicksShare: Boolean = false,
     val hasError: Boolean = false

@@ -15,6 +15,7 @@ plugins {
 apply(from = "../gradle/dependency_graph.gradle")
 
 android {
+    namespace = "journal.gratitude.com.gratitudejournal"
     compileSdk = Versions.COMPILE_SDK
 
     defaultConfig {
@@ -38,13 +39,15 @@ android {
     }
 
     buildFeatures {
+        buildConfig = true
         dataBinding = true //TODO are we still using this?
         viewBinding = true
     }
 
     buildTypes {
         getByName("debug") {
-            isTestCoverageEnabled = project.hasProperty("coverage")
+            enableUnitTestCoverage = project.hasProperty("coverage")
+            enableAndroidTestCoverage = project.hasProperty("coverage")
             versionNameSuffix = "-DEBUG"
         }
         getByName("release") {
@@ -62,12 +65,12 @@ android {
     testOptions.animationsDisabled = true
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
 }
 
@@ -93,6 +96,7 @@ dependencies {
     implementation(Libraries.androidx_paging_runtime)
     implementation(Libraries.androidx_room_runtime)
     implementation(Libraries.androidx_room_ktx)
+    implementation(Libraries.androidx_room_paging)
     kapt(Libraries.androidx_room_compiler)
 
     implementation(Libraries.androidx_livedata_ktx)
@@ -165,6 +169,6 @@ fun getVersionName(): String {
 }
 
 fun getDropboxKey(): String {
-    val localPropsKey = gradleLocalProperties(rootDir).getProperty("DROPBOX_KEY") ?: "missing_local_key"
+    val localPropsKey = gradleLocalProperties(rootDir, providers).getProperty("DROPBOX_KEY") ?: "missing_local_key"
     return System.getenv("DROPBOX_APP_KEY") ?: localPropsKey
 }

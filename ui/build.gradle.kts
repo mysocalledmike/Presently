@@ -4,6 +4,7 @@ plugins {
 }
 
 android {
+    namespace = "com.presently.ui"
     compileSdk = Versions.COMPILE_SDK
 
     defaultConfig {
@@ -24,6 +25,15 @@ android {
         }
     }
 
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = "17"
+    }
 
     dependencies {
         implementation(Libraries.kotlin_stdlib)

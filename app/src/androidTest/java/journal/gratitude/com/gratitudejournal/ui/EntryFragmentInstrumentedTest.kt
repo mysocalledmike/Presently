@@ -63,12 +63,12 @@ class EntryFragmentInstrumentedTest {
         val args = EntryArgs(date.toString(), false, 1, "quote", "hint", emptyList())
 
         launchFragmentInHiltContainer<EntryFragment>(
-            themeResId = R.style.Base_AppTheme,
+            themeResId = com.presently.ui.R.style.Base_AppTheme,
             fragmentArgs = args.asMavericksArgs()
         )
 
-        onView(withId(R.id.date)).check(matches(withText("Today")))
-        onView(withId(R.id.thankful_for)).check(matches(withText("I am grateful for")))
+        onView(withId(com.presently.ui.R.id.date)).check(matches(withText("Today")))
+        onView(withId(com.presently.ui.R.id.thankful_for)).check(matches(withText("I am grateful for")))
     }
 
     @Test
@@ -81,12 +81,12 @@ class EntryFragmentInstrumentedTest {
         val args = EntryArgs(date.toString(), false, 1, "quote", "hint", emptyList())
 
         launchFragmentInHiltContainer<EntryFragment>(
-            themeResId = R.style.Base_AppTheme,
+            themeResId = com.presently.ui.R.style.Base_AppTheme,
             fragmentArgs = args.asMavericksArgs()
         )
 
-        onView(withId(R.id.date)).check(matches(withText("Yesterday")))
-        onView(withId(R.id.thankful_for)).check(matches(withText("I was grateful for")))
+        onView(withId(com.presently.ui.R.id.date)).check(matches(withText("Yesterday")))
+        onView(withId(com.presently.ui.R.id.thankful_for)).check(matches(withText("I was grateful for")))
     }
 
     @Test
@@ -98,13 +98,13 @@ class EntryFragmentInstrumentedTest {
         val args = EntryArgs(date.toString(), false, 1, "quote", "hint", emptyList())
 
         launchFragmentInHiltContainer<EntryFragment>(
-            themeResId = R.style.Base_AppTheme,
+            themeResId = com.presently.ui.R.style.Base_AppTheme,
             fragmentArgs = args.asMavericksArgs()
         )
 
-        onView(withId(R.id.share_button))
+        onView(withId(com.presently.ui.R.id.share_button))
             .check(matches(isDisplayed()))
-        onView(withId(R.id.prompt_button))
+        onView(withId(com.presently.ui.R.id.prompt_button))
             .check(matches(not(isDisplayed())))
     }
 
@@ -115,12 +115,12 @@ class EntryFragmentInstrumentedTest {
         val args = EntryArgs(date.toString(), true, 0, "quote", "hint", emptyList())
 
         launchFragmentInHiltContainer<EntryFragment>(
-            themeResId = R.style.Base_AppTheme,
+            themeResId = com.presently.ui.R.style.Base_AppTheme,
             fragmentArgs = args.asMavericksArgs()
         )
 
-        onView(withId(R.id.share_button)).check(matches(not(isDisplayed())))
-        onView(withId(R.id.prompt_button)).check(matches(isDisplayed()))
+        onView(withId(com.presently.ui.R.id.share_button)).check(matches(not(isDisplayed())))
+        onView(withId(com.presently.ui.R.id.prompt_button)).check(matches(isDisplayed()))
     }
 
     @Test
@@ -131,14 +131,14 @@ class EntryFragmentInstrumentedTest {
 
 
         launchFragmentInHiltContainer<EntryFragment>(
-            themeResId = R.style.Base_AppTheme,
+            themeResId = com.presently.ui.R.style.Base_AppTheme,
             fragmentArgs = args.asMavericksArgs()
         )
 
 
-        onView(withId(R.id.entry_text)).check(matches(withHint("first hint")))
-        onView(withId(R.id.prompt_button)).perform(click())
-        onView(withId(R.id.entry_text)).check(matches(withHint("second hint")))
+        onView(withId(com.presently.ui.R.id.entry_text)).check(matches(withHint("first hint")))
+        onView(withId(com.presently.ui.R.id.prompt_button)).perform(click())
+        onView(withId(com.presently.ui.R.id.entry_text)).check(matches(withHint("second hint")))
     }
 
     @Test
@@ -149,16 +149,16 @@ class EntryFragmentInstrumentedTest {
 
 
         launchFragmentInHiltContainer<EntryFragment>(
-            themeResId = R.style.Base_AppTheme,
+            themeResId = com.presently.ui.R.style.Base_AppTheme,
             fragmentArgs = args.asMavericksArgs()
         )
 
-        onView(withId(R.id.entry_text)).perform(
+        onView(withId(com.presently.ui.R.id.entry_text)).perform(
             typeText("Test string!"),
             closeSoftKeyboard()
         )
 
-        onView(withId(R.id.save_button)).perform(click())
+        onView(withId(com.presently.ui.R.id.save_button)).perform(click())
 
         onView(withText("Share your achievement")).inRoot(isDialog()).check(matches(isDisplayed()))
     }
@@ -172,18 +172,18 @@ class EntryFragmentInstrumentedTest {
         val args = EntryArgs(date.toString(), true, 4, "quote", "hint", emptyList())
 
         launchFragmentInHiltContainer<EntryFragment>(
-            themeResId = R.style.Base_AppTheme,
+            themeResId = com.presently.ui.R.style.Base_AppTheme,
             fragmentArgs = args.asMavericksArgs()
         )
 
-        onView(withId(R.id.entry_text)).perform(
+        onView(withId(com.presently.ui.R.id.entry_text)).perform(
             typeText("Test string!"),
             closeSoftKeyboard()
         )
 
-        onView(withId(R.id.save_button)).perform(click())
+        onView(withId(com.presently.ui.R.id.save_button)).perform(click())
 
-        onView(withId(R.id.rate_presently)).perform(click())
+        onView(withId(com.presently.ui.R.id.rate_presently)).perform(click())
 
         val uri = Uri.parse("market://details?id=journal.gratitude.com.gratitudejournal")
         Intents.intended(
@@ -205,18 +205,18 @@ class EntryFragmentInstrumentedTest {
         val args = EntryArgs(date.toString(), true, 4, "quote", "hint", emptyList())
 
         launchFragmentInHiltContainer<EntryFragment>(
-            themeResId = R.style.Base_AppTheme,
+            themeResId = com.presently.ui.R.style.Base_AppTheme,
             fragmentArgs = args.asMavericksArgs()
         )
 
-        onView(withId(R.id.entry_text)).perform(
+        onView(withId(com.presently.ui.R.id.entry_text)).perform(
             typeText("Test string!"),
             closeSoftKeyboard()
         )
 
-        onView(withId(R.id.save_button)).perform(click())
+        onView(withId(com.presently.ui.R.id.save_button)).perform(click())
 
-        onView(withId(R.id.share_presently)).perform(click())
+        onView(withId(com.presently.ui.R.id.share_presently)).perform(click())
 
         Intents.intended(
             Matchers.allOf(
@@ -236,19 +236,19 @@ class EntryFragmentInstrumentedTest {
 
 
         launchFragmentInHiltContainer<EntryFragment>(
-            themeResId = R.style.Base_AppTheme,
+            themeResId = com.presently.ui.R.style.Base_AppTheme,
             fragmentArgs = args.asMavericksArgs()
         )
 
         val quote =
-            getText(withId(R.id.inspiration))
+            getText(withId(com.presently.ui.R.id.inspiration))
 
-        onView(withId(R.id.inspiration)).perform(longClick())
-        onView(withId(R.id.entry_text)).perform(click())
+        onView(withId(com.presently.ui.R.id.inspiration)).perform(longClick())
+        onView(withId(com.presently.ui.R.id.entry_text)).perform(click())
         UiDevice.getInstance(InstrumentationRegistry.getInstrumentation()).pressKeyCode(KeyEvent.KEYCODE_V, KeyEvent.META_CTRL_MASK)
 
 
-        onView(withId(R.id.entry_text)).check(matches(
+        onView(withId(com.presently.ui.R.id.entry_text)).check(matches(
             isEditTextValueEqualTo(
                 quote
             )
@@ -262,7 +262,7 @@ class EntryFragmentInstrumentedTest {
         val args = EntryArgs(date.toString(), true, 0, "quote", "hint", emptyList())
 
         val scenario = launchFragmentInHiltContainer<EntryFragment>(
-            themeResId = R.style.Base_AppTheme,
+            themeResId = com.presently.ui.R.style.Base_AppTheme,
             fragmentArgs = args.asMavericksArgs()
         )
 
@@ -271,9 +271,9 @@ class EntryFragmentInstrumentedTest {
             activity = act
         }
 
-        onView(withId(R.id.inspiration)).perform(longClick())
+        onView(withId(com.presently.ui.R.id.inspiration)).perform(longClick())
 
-        onView(withText(R.string.copied)).inRoot(withDecorView(not((activity?.window?.decorView))))
+        onView(withText(com.presently.strings.R.string.copied)).inRoot(withDecorView(not((activity?.window?.decorView))))
             .check(matches(isDisplayed()))
     }
 
@@ -285,16 +285,16 @@ class EntryFragmentInstrumentedTest {
         val args = EntryArgs(date.toString(), true, 0, "quote", "hint", emptyList())
 
         launchFragmentInHiltContainer<EntryFragment>(
-            themeResId = R.style.Base_AppTheme,
+            themeResId = com.presently.ui.R.style.Base_AppTheme,
             fragmentArgs = args.asMavericksArgs()
         )
 
         //Simulate user typing
-        onView(withId(R.id.entry_text)).perform(
+        onView(withId(com.presently.ui.R.id.entry_text)).perform(
             typeText("Test string!")
         )
         onView(isRoot()).perform(waitFor(550))
-        onView(withId(R.id.entry_text)).perform(
+        onView(withId(com.presently.ui.R.id.entry_text)).perform(
             typeText("Yeehaw!"),
             closeSoftKeyboard()
         )
@@ -307,18 +307,18 @@ class EntryFragmentInstrumentedTest {
         mDevice.pressBack()
 
         //dialog is displayed
-        onView(withText(R.string.are_you_sure)).check(matches(isDisplayed()))
+        onView(withText(com.presently.strings.R.string.are_you_sure)).check(matches(isDisplayed()))
 
         //cancel is pressed
         onView(withId(android.R.id.button1)).perform(click())
-        onView(withText(R.string.are_you_sure)).check(ViewAssertions.doesNotExist())
+        onView(withText(com.presently.strings.R.string.are_you_sure)).check(ViewAssertions.doesNotExist())
 
         //back pressed again
         mDevice.pressBack()
 
         //continue clicked
         onView(withId(android.R.id.button2)).perform(click())
-        onView(withText(R.string.are_you_sure)).check(ViewAssertions.doesNotExist())
+        onView(withText(com.presently.strings.R.string.are_you_sure)).check(ViewAssertions.doesNotExist())
     }
 
     @Test
@@ -328,14 +328,14 @@ class EntryFragmentInstrumentedTest {
         val args = EntryArgs(date.toString(), true, 0, "quote", "hint", emptyList())
 
         launchFragmentInHiltContainer<EntryFragment>(
-            themeResId = R.style.Base_AppTheme,
+            themeResId = com.presently.ui.R.style.Base_AppTheme,
             fragmentArgs = args.asMavericksArgs()
         )
 
         val mDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation())
         mDevice.pressBack()
 
-        onView(withText(R.string.are_you_sure)).check(ViewAssertions.doesNotExist())
+        onView(withText(com.presently.strings.R.string.are_you_sure)).check(ViewAssertions.doesNotExist())
     }
 
 }

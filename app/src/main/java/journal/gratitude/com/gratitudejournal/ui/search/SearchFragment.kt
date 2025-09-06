@@ -51,7 +51,7 @@ class SearchFragment : Fragment() {
         _binding = SearchFragmentBinding.inflate(inflater, container, false)
 
         val transition =
-            TransitionInflater.from(this.activity).inflateTransition(android.R.transition.move)
+            TransitionInflater.from(requireContext()).inflateTransition(android.R.transition.move)
 
         sharedElementEnterTransition = ChangeBounds().apply {
             sharedElementEnterTransition = transition
@@ -86,7 +86,7 @@ class SearchFragment : Fragment() {
                 binding.noResultsIcon.isVisible = displayEmptyMessage
                 // Handle icon display issues in older versions
                 if(Build.VERSION.SDK_INT <= 23)
-                    binding.noResultsIcon.imageTintList = context?.getColorStateList(R.color.text_color)
+                    binding.noResultsIcon.imageTintList = context?.getColorStateList(com.presently.ui.R.color.text_color)
                 binding.noResults.isVisible = displayEmptyMessage
             }
         }
@@ -132,7 +132,7 @@ class SearchFragment : Fragment() {
 
         val window = requireActivity().window
         val typedValue = TypedValue()
-        requireActivity().theme.resolveAttribute(R.attr.toolbarColor, typedValue, true)
+        requireActivity().theme.resolveAttribute(com.presently.ui.R.attr.toolbarColor, typedValue, true)
         setStatusBarColorsForBackground(window, typedValue.data)
         window.statusBarColor = typedValue.data
     }

@@ -57,7 +57,7 @@ class AppLockFragment : Fragment() {
     }
 
     private fun showFingerprintLock() {
-        val executor = ContextCompat.getMainExecutor(context)
+        val executor = ContextCompat.getMainExecutor(requireContext())
         val biometricPrompt = BiometricPrompt(this, executor,
                 object : BiometricPrompt.AuthenticationCallback() {
                     override fun onAuthenticationError(
@@ -77,7 +77,7 @@ class AppLockFragment : Fragment() {
                             BiometricPrompt.ERROR_LOCKOUT,
                             BiometricPrompt.ERROR_LOCKOUT_PERMANENT -> {
                                 analytics.recordEvent(BIOMETRICS_LOCKOUT)
-                                Toast.makeText(context, R.string.fingerprint_error_lockout_too_many, Toast.LENGTH_SHORT).show()
+                                Toast.makeText(requireContext(), com.presently.strings.R.string.fingerprint_error_lockout_too_many, Toast.LENGTH_SHORT).show()
                                 requireActivity().finish()
                             }
                             BiometricPrompt.ERROR_CANCELED -> {
@@ -118,8 +118,8 @@ class AppLockFragment : Fragment() {
                 })
 
         val promptInfo = BiometricPrompt.PromptInfo.Builder().apply {
-            setTitle(getString(R.string.lock_title))
-            setSubtitle(getString(R.string.lock_summary))
+            setTitle(getString(com.presently.strings.R.string.lock_title))
+            setSubtitle(getString(com.presently.strings.R.string.lock_summary))
             setConfirmationRequired(false)
             if (Build.VERSION.SDK_INT > 29) {
                 setAllowedAuthenticators(BIOMETRIC_WEAK or DEVICE_CREDENTIAL)

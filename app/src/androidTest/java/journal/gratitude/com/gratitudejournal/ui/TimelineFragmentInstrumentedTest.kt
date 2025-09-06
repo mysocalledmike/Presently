@@ -47,40 +47,40 @@ class TimelineFragmentInstrumentedTest {
     @Test
     fun timelineFragment_showsTimeline() {
         launchFragmentInHiltContainer<TimelineFragment>(
-            themeResId = R.style.Base_AppTheme
+            themeResId = com.presently.ui.R.style.Base_AppTheme
         )
-        onView(withId(R.id.timeline_recycler_view)).check(matches(isDisplayed()))
+        onView(withId(com.presently.ui.R.id.timeline_recycler_view)).check(matches(isDisplayed()))
     }
 
     @Test
     fun timelineFragment_clickCalendar_opensCalendar() {
         launchFragmentInHiltContainer<TimelineFragment>()
 
-        onView(withId(R.id.cal_fab)).perform(click())
+        onView(withId(com.presently.ui.R.id.cal_fab)).perform(click())
 
-        onView(withId(R.id.entry_calendar)).check(matches(isDisplayed()))
+        onView(withId(com.presently.ui.R.id.entry_calendar)).check(matches(isDisplayed()))
     }
 
     @Test
     fun timelineFragment_openCalendar_clickingBack_closesCal() {
         launchFragmentInHiltContainer<TimelineFragment>()
 
-        onView(withId(R.id.cal_fab)).perform(click())
+        onView(withId(com.presently.ui.R.id.cal_fab)).perform(click())
 
         pressBack()
 
-        onView(withId(R.id.entry_calendar)).check(matches(not(isDisplayed())))
+        onView(withId(com.presently.ui.R.id.entry_calendar)).check(matches(not(isDisplayed())))
     }
 
     @Test
     fun timelineFragment_openCalendar_clickingClose_closesCal() {
         launchFragmentInHiltContainer<TimelineFragment>()
 
-        onView(withId(R.id.cal_fab)).perform(click())
+        onView(withId(com.presently.ui.R.id.cal_fab)).perform(click())
 
-        onView(withId(R.id.close_button)).perform(click())
+        onView(withId(com.presently.ui.R.id.close_button)).perform(click())
 
-        onView(withId(R.id.entry_calendar)).check(matches(not(isDisplayed())))
+        onView(withId(com.presently.ui.R.id.entry_calendar)).check(matches(not(isDisplayed())))
     }
 
     @Test
@@ -92,7 +92,7 @@ class TimelineFragmentInstrumentedTest {
         val intentResult = Instrumentation.ActivityResult(Activity.RESULT_OK, intent)
         Intents.intending(anyIntent()).respondWith(intentResult)
 
-        onView(withId(R.id.overflow_button)).perform(click())
+        onView(withId(com.presently.ui.R.id.overflow_button)).perform(click())
 
         onView(withText("Contact Us"))
             .perform(click())
@@ -123,7 +123,7 @@ class TimelineFragmentInstrumentedTest {
 
     private fun scrollCalendarBackwardsBy(months: Int) {
         for (i in 0 until months) {
-            onView(withId(R.id.compactcalendar_view)).perform(
+            onView(withId(com.presently.ui.R.id.compactcalendar_view)).perform(
                 scroll(100, 300, 300, 250)
             )
         }

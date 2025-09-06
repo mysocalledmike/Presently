@@ -32,8 +32,8 @@ class CustomListPrefDialogFragCompat: ListPreferenceDialogFragmentCompat() {
 
         val theme = context?.theme
         val attrs = IntArray(3)
-        attrs[0] = R.attr.timelineBackgroundColor
-        attrs[1] = R.attr.timelineBodyColor
+        attrs[0] = com.presently.ui.R.attr.timelineBackgroundColor
+        attrs[1] = com.presently.ui.R.attr.timelineBodyColor
         val typedArray = theme?.obtainStyledAttributes(attrs)
 
         val backgroundColor  = typedArray?.getColor(0, Color.WHITE)

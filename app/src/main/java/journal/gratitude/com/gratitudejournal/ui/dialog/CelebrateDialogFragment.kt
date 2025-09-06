@@ -72,10 +72,10 @@ class CelebrateDialogFragment : DialogFragment() {
 
                 val share = Intent(Intent.ACTION_SEND)
                 share.type = "text/plain"
-                val shareText = getString(R.string.share_milestone, entryCount)
+                val shareText = getString(com.presently.strings.R.string.share_milestone, entryCount)
                 share.putExtra(Intent.EXTRA_TEXT, shareText)
 
-                startActivity(Intent.createChooser(share, getString(R.string.share_your_gratitude)))
+                startActivity(Intent.createChooser(share, getString(com.presently.strings.R.string.share_your_gratitude)))
             }
         }
     }
@@ -84,7 +84,7 @@ class CelebrateDialogFragment : DialogFragment() {
         val dialog = super.onCreateDialog(savedInstanceState)
 
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        setStyle(STYLE_NO_FRAME, R.style.MilestoneDialog)
+        setStyle(STYLE_NO_FRAME, com.presently.ui.R.style.MilestoneDialog)
         return dialog
     }
 

@@ -80,7 +80,7 @@ class SharingFragment : Fragment(R.layout.fragment_sharing), MockableMavericksVi
 
         val window = requireActivity().window
         val typedValue = TypedValue()
-        requireActivity().theme.resolveAttribute(R.attr.toolbarColor, typedValue, true)
+        requireActivity().theme.resolveAttribute(com.presently.ui.R.attr.toolbarColor, typedValue, true)
         setStatusBarColorsForBackground(window, typedValue.data)
         window.statusBarColor = typedValue.data
     }
@@ -174,9 +174,9 @@ class SharingFragment : Fragment(R.layout.fragment_sharing), MockableMavericksVi
         state("Moonlight design") {
             copy(viewDesign = SharingViewDesign(
                 "moonlight",
-                R.color.moonlightMainTextAndButtonColor,
-                R.color.moonlightMainTextAndButtonColor,
-                R.color.moonlightBackgroundColor
+                com.presently.ui.R.color.moonlightMainTextAndButtonColor,
+                com.presently.ui.R.color.moonlightMainTextAndButtonColor,
+                com.presently.ui.R.color.moonlightBackgroundColor
             ))
         }
     }

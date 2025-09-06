@@ -116,11 +116,11 @@ class TimelineFragment : Fragment() {
             PopupMenu(context, it).apply {
                 setOnMenuItemClickListener { item ->
                     when (item.itemId) {
-                        R.id.notification_settings -> {
+                        com.presently.ui.R.id.notification_settings -> {
                             openSettings()
                             true
                         }
-                        R.id.contact_us -> {
+                        com.presently.ui.R.id.contact_us -> {
                             openContactForm()
                             true
                         }
@@ -176,7 +176,7 @@ class TimelineFragment : Fragment() {
 
         val window = requireActivity().window
         val typedValue = TypedValue()
-        requireActivity().theme.resolveAttribute(R.attr.toolbarColor, typedValue, true)
+        requireActivity().theme.resolveAttribute(com.presently.ui.R.attr.toolbarColor, typedValue, true)
         window.statusBarColor = typedValue.data
         setStatusBarColorsForBackground(window, typedValue.data)
     }
@@ -233,7 +233,7 @@ class TimelineFragment : Fragment() {
             startActivity(intent)
         } catch (activityNotFoundException: ActivityNotFoundException) {
             crashReporter.logHandledException(activityNotFoundException)
-            Toast.makeText(context, R.string.no_app_found, Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), com.presently.strings.R.string.no_app_found, Toast.LENGTH_SHORT).show()
         }
     }
 

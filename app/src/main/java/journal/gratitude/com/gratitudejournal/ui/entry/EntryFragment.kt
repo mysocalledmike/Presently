@@ -130,7 +130,7 @@ class EntryFragment : Fragment(), MavericksView, EntryScreenCallbacks {
                         )
                     clipboard?.setPrimaryClip(ClipData.newPlainText("Gratitude quote", quote))
                     analytics.recordEvent(COPIED_QUOTE)
-                    Toast.makeText(context, R.string.copied, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), com.presently.strings.R.string.copied, Toast.LENGTH_SHORT).show()
                 })
                 true
             }
@@ -157,16 +157,16 @@ class EntryFragment : Fragment(), MavericksView, EntryScreenCallbacks {
     override fun invalidate() = withState(viewModel) { state ->
         when (state.date) {
             LocalDate.now() -> {
-                binding.date.text = resources.getString(R.string.today)
-                binding.thankfulFor.text = resources.getString(R.string.iam)
+                binding.date.text = resources.getString(com.presently.strings.R.string.today)
+                binding.thankfulFor.text = resources.getString(com.presently.strings.R.string.iam)
             }
             LocalDate.now().minusDays(1) -> {
-                binding.date.text = resources.getString(R.string.yesterday)
-                binding.thankfulFor.text = resources.getString(R.string.iwas)
+                binding.date.text = resources.getString(com.presently.strings.R.string.yesterday)
+                binding.thankfulFor.text = resources.getString(com.presently.strings.R.string.iwas)
             }
             else -> {
                 binding.date.text = state.date.toFullString()
-                binding.thankfulFor.text = resources.getString(R.string.iwas)
+                binding.thankfulFor.text = resources.getString(com.presently.strings.R.string.iwas)
             }
         }
         binding.inspiration.text = state.quote
@@ -210,7 +210,7 @@ class EntryFragment : Fragment(), MavericksView, EntryScreenCallbacks {
         val window = requireActivity().window
         window.statusBarColor = Color.TRANSPARENT
         val typedValue = TypedValue()
-        requireActivity().theme.resolveAttribute(R.attr.timelineBackgroundColor, typedValue, true)
+        requireActivity().theme.resolveAttribute(com.presently.ui.R.attr.timelineBackgroundColor, typedValue, true)
         setStatusBarColorsForBackground(window, typedValue.data)
     }
 
@@ -241,9 +241,9 @@ class EntryFragment : Fragment(), MavericksView, EntryScreenCallbacks {
         val alertDialog: AlertDialog? = activity?.let {
             val builder = AlertDialog.Builder(it)
             builder.apply {
-                setTitle(if (isFromSwipe) R.string.are_you_sure_to_swipe else R.string.are_you_sure)
-                setMessage(R.string.unsaved_text)
-                setPositiveButton(R.string.continue_to_exit) { _, _ ->
+                setTitle(if (isFromSwipe) com.presently.strings.R.string.are_you_sure_to_swipe else com.presently.strings.R.string.are_you_sure)
+                setMessage(com.presently.strings.R.string.unsaved_text)
+                setPositiveButton(com.presently.strings.R.string.continue_to_exit) { _, _ ->
                     if (isFromSwipe) {
                         //reset the entry and enable viewpager swiping
                         viewModel.getEntry()
@@ -251,7 +251,7 @@ class EntryFragment : Fragment(), MavericksView, EntryScreenCallbacks {
                     }
                     requireActivity().supportFragmentManager.popBackStack()
                 }
-                setNegativeButton(R.string.cancel) { _, _ -> }
+                setNegativeButton(com.presently.strings.R.string.cancel) { _, _ -> }
                 setOnDismissListener {
                     parentCallback?.invoke()
                 }
@@ -274,16 +274,16 @@ class EntryFragment : Fragment(), MavericksView, EntryScreenCallbacks {
             }
 
             val firstHintResource = if (date == LocalDate.now()) {
-                R.string.what_are_you_thankful_for
+                com.presently.strings.R.string.what_are_you_thankful_for
             } else {
-                R.string.what_were_you_thankful_for
+                com.presently.strings.R.string.what_were_you_thankful_for
             }
 
             val firstHint = resources.getString(firstHintResource)
 
-            val prompts = resources.getStringArray(R.array.prompts)
+            val prompts = resources.getStringArray(com.presently.strings.R.array.prompts)
             prompts.shuffle() //randomise prompts
-            val quote = resources.getStringArray(R.array.inspirations).random()
+            val quote = resources.getStringArray(com.presently.strings.R.array.inspirations).random()
 
             val fragment = EntryFragment()
             fragment.arguments =

@@ -106,21 +106,21 @@ class RealUploader @Inject constructor(
         val accountPagePendingIntent: PendingIntent =
             PendingIntent.getActivity(appContext, 0, accountPageIntent, 0)
 
-        val notificationBodyText = appContext.getString(R.string.dropbox_too_full_notif_body)
+        val notificationBodyText = appContext.getString(com.presently.strings.R.string.dropbox_too_full_notif_body)
 
         val builder = NotificationCompat.Builder(
             appContext,
             ContainerActivity.BACKUP_STATUS_CHANNEL
         )
-            .setSmallIcon(R.drawable.ic_app_icon)
-            .setContentTitle(appContext.getString(R.string.backup_failure_notif_header))
+            .setSmallIcon(com.presently.ui.R.drawable.ic_app_icon)
+            .setContentTitle(appContext.getString(com.presently.strings.R.string.backup_failure_notif_header))
             .setContentText(notificationBodyText)
             .setStyle(NotificationCompat.BigTextStyle().bigText(notificationBodyText))
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setContentIntent(accountPagePendingIntent) //open dropbox account settings when tapped
             .addAction(
-                R.drawable.ic_faq,
-                appContext.getString(R.string.learn_more),
+                com.presently.ui.R.drawable.ic_faq,
+                appContext.getString(com.presently.strings.R.string.learn_more),
                 helpPagePendingIntent
             ) //open dropbox help page
             .setAutoCancel(true)
@@ -141,13 +141,13 @@ class RealUploader @Inject constructor(
             intent,
             PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
 
-        val notifBody = appContext.getString(R.string.dropbox_sync_error_notif_body)
+        val notifBody = appContext.getString(com.presently.strings.R.string.dropbox_sync_error_notif_body)
         val builder = NotificationCompat.Builder(
             appContext,
             ContainerActivity.BACKUP_STATUS_CHANNEL
         )
-            .setSmallIcon(R.drawable.ic_app_icon)
-            .setContentTitle(appContext.getString(R.string.backup_failure_notif_header))
+            .setSmallIcon(com.presently.ui.R.drawable.ic_app_icon)
+            .setContentTitle(appContext.getString(com.presently.strings.R.string.backup_failure_notif_header))
             .setContentText(notifBody)
             .setStyle(NotificationCompat.BigTextStyle().bigText(notifBody))
             .setPriority(NotificationCompat.PRIORITY_HIGH)

@@ -49,11 +49,11 @@ class EntryViewPagerFragmentInstrumentedTest {
         val args = EntryViewPagerArgs(date)
 
         launchFragmentInHiltContainer<EntryViewPagerFragment>(
-            themeResId = R.style.Base_AppTheme,
+            themeResId = com.presently.ui.R.style.Base_AppTheme,
             fragmentArgs = args.asMavericksArgs()
         )
 
-        onView(withId(R.id.view_pager)).check(matches(isDisplayed()))
+        onView(withId(com.presently.ui.R.id.view_pager)).check(matches(isDisplayed()))
     }
 
     @Test
@@ -68,12 +68,12 @@ class EntryViewPagerFragmentInstrumentedTest {
         val args = EntryViewPagerArgs(today)
 
         launchFragmentInHiltContainer<EntryViewPagerFragment>(
-            themeResId = R.style.Base_AppTheme,
+            themeResId = com.presently.ui.R.style.Base_AppTheme,
             fragmentArgs = args.asMavericksArgs()
         )
 
-        onView(withId(R.id.date)).check(matches(withText("Today")))
-        onView(withId(R.id.thankful_for)).check(matches(withText("I am grateful for")))
+        onView(withId(com.presently.ui.R.id.date)).check(matches(withText("Today")))
+        onView(withId(com.presently.ui.R.id.thankful_for)).check(matches(withText("I am grateful for")))
     }
 
 
@@ -89,12 +89,12 @@ class EntryViewPagerFragmentInstrumentedTest {
         val args = EntryViewPagerArgs(yesterday)
 
         launchFragmentInHiltContainer<EntryViewPagerFragment>(
-            themeResId = R.style.Base_AppTheme,
+            themeResId = com.presently.ui.R.style.Base_AppTheme,
             fragmentArgs = args.asMavericksArgs()
         )
 
-        onView(withId(R.id.date)).check(matches(withText("Yesterday")))
-        onView(withId(R.id.thankful_for)).check(matches(withText("I was grateful for")))
+        onView(withId(com.presently.ui.R.id.date)).check(matches(withText("Yesterday")))
+        onView(withId(com.presently.ui.R.id.thankful_for)).check(matches(withText("I was grateful for")))
     }
 
 
@@ -110,14 +110,14 @@ class EntryViewPagerFragmentInstrumentedTest {
         val args = EntryViewPagerArgs(yesterday)
 
         launchFragmentInHiltContainer<EntryViewPagerFragment>(
-            themeResId = R.style.Base_AppTheme,
+            themeResId = com.presently.ui.R.style.Base_AppTheme,
             fragmentArgs = args.asMavericksArgs()
         )
 
-        onView(withId(R.id.date)).check(matches(withText("Yesterday")))
-        onView(withId(R.id.thankful_for)).check(matches(withText("I was grateful for")))
+        onView(withId(com.presently.ui.R.id.date)).check(matches(withText("Yesterday")))
+        onView(withId(com.presently.ui.R.id.thankful_for)).check(matches(withText("I was grateful for")))
 
-        onView(withId(R.id.view_pager)).perform(ViewActions.swipeRight())
+        onView(withId(com.presently.ui.R.id.view_pager)).perform(ViewActions.swipeRight())
 
         onView(withText("Today")).check(matches(isDisplayed()))
         onView(withText("I am grateful for")).check(matches(isDisplayed()))
@@ -135,14 +135,14 @@ class EntryViewPagerFragmentInstrumentedTest {
         val args = EntryViewPagerArgs(today)
 
         launchFragmentInHiltContainer<EntryViewPagerFragment>(
-            themeResId = R.style.Base_AppTheme,
+            themeResId = com.presently.ui.R.style.Base_AppTheme,
             fragmentArgs = args.asMavericksArgs()
         )
 
         onView(withText("Today")).check(matches(isDisplayed()))
         onView(withText("I am grateful for")).check(matches(isDisplayed()))
 
-        onView(withId(R.id.view_pager)).perform(ViewActions.swipeLeft())
+        onView(withId(com.presently.ui.R.id.view_pager)).perform(ViewActions.swipeLeft())
 
         onView(withText("Yesterday")).check(matches(withText("Yesterday")))
         onView(withText("I was grateful for")).check(matches(withText("I was grateful for")))

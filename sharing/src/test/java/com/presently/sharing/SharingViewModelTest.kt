@@ -36,16 +36,16 @@ class SharingViewModelTest {
     fun `GIVEN a sharing viewmodel WHEN a color scheme is selected THEN the state is changed`() {
         val initialState = SharingViewState(
             "content", "March 11, 2021", SharingViewDesign(
-                "original", R.color.originalTimelineColor,
-                R.color.originalTimelineColor,
-                R.color.originalBackgroundColor
+                "original", com.presently.ui.R.color.originalTimelineColor,
+                com.presently.ui.R.color.originalTimelineColor,
+                com.presently.ui.R.color.originalBackgroundColor
             )
         )
         val newDesign = SharingViewDesign(
             "moonlight",
-            R.color.moonlightMainTextAndButtonColor,
-            R.color.moonlightMainTextAndButtonColor,
-            R.color.moonlightBackgroundColor
+            com.presently.ui.R.color.moonlightMainTextAndButtonColor,
+            com.presently.ui.R.color.moonlightMainTextAndButtonColor,
+            com.presently.ui.R.color.moonlightBackgroundColor
         )
         val viewModel = SharingViewModel(initialState, analyticsLogger)
         viewModel.selectColorScheme(newDesign)
@@ -59,9 +59,9 @@ class SharingViewModelTest {
     fun `GIVEN a sharing viewmodel WHEN clickFinish is called THEN the state is updated`() {
         val initialState = SharingViewState(
             "content", "March 11, 2021", SharingViewDesign(
-                "original", R.color.originalTimelineColor,
-                R.color.originalTimelineColor,
-                R.color.originalBackgroundColor
+                "original", com.presently.ui.R.color.originalTimelineColor,
+                com.presently.ui.R.color.originalTimelineColor,
+                com.presently.ui.R.color.originalBackgroundColor
             )
         )
         val viewModel = SharingViewModel(initialState, analyticsLogger)
@@ -97,9 +97,9 @@ class SharingViewModelTest {
 
         val initialState = SharingViewState(
             "content", "March 11, 2021", SharingViewDesign(
-                "original", R.color.originalTimelineColor,
-                R.color.originalTimelineColor,
-                R.color.originalBackgroundColor
+                "original", com.presently.ui.R.color.originalTimelineColor,
+                com.presently.ui.R.color.originalTimelineColor,
+                com.presently.ui.R.color.originalBackgroundColor
             )
         )
         val viewModel = SharingViewModel(initialState, analyticsLogger)
@@ -113,9 +113,9 @@ class SharingViewModelTest {
     fun `GIVEN a sharing viewmodel WHEN sharingComplete is called THEN the state is updated`() {
         val initialState = SharingViewState(
             "content", "March 11, 2021", SharingViewDesign(
-                "original", R.color.originalTimelineColor,
-                R.color.originalTimelineColor,
-                R.color.originalBackgroundColor,
+                "original", com.presently.ui.R.color.originalTimelineColor,
+                com.presently.ui.R.color.originalTimelineColor,
+                com.presently.ui.R.color.originalBackgroundColor,
             ),
             clicksShare = true
         )
@@ -165,9 +165,9 @@ class SharingViewModelTest {
             "",
             "",
             SharingViewDesign(
-                "original", R.color.originalTimelineColor,
-                R.color.originalTimelineColor,
-                R.color.originalBackgroundColor,
+                "original", com.presently.ui.R.color.originalTimelineColor,
+                com.presently.ui.R.color.originalTimelineColor,
+                com.presently.ui.R.color.originalBackgroundColor,
             ),
             clicksShare = true
         )

@@ -81,7 +81,7 @@ class SettingsFragment : PreferenceFragmentCompat(),
         } else if (state.sessionId() == requestId && state.status() == SplitInstallSessionStatus.FAILED) {
             val errorCode = state.errorCode()
             crashReporter.logHandledException(Exception("SplitInstallErrorCode: $errorCode"))
-            Toast.makeText(context, "Error loading language", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Error loading language", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -103,7 +103,7 @@ class SettingsFragment : PreferenceFragmentCompat(),
         val window = requireActivity().window
         window.statusBarColor = Color.TRANSPARENT
         val typedValue = TypedValue()
-        requireActivity().theme.resolveAttribute(R.attr.timelineBackgroundColor, typedValue, true)
+        requireActivity().theme.resolveAttribute(com.presently.ui.R.attr.timelineBackgroundColor, typedValue, true)
         setStatusBarColorsForBackground(window, typedValue.data)
     }
 
@@ -112,18 +112,18 @@ class SettingsFragment : PreferenceFragmentCompat(),
         setPreferencesFromResource(R.xml.preferences, rootKey)
 
         //region App Information
-        val faq = findPreference<Preference>(getString(R.string.key_faq))
+        val faq = findPreference<Preference>(getString(com.presently.strings.R.string.key_faq))
         faq?.setOnPreferenceClickListener {
             openFaq()
             true
         }
-        val share = findPreference<Preference>(getString(R.string.key_share_app))
+        val share = findPreference<Preference>(getString(com.presently.strings.R.string.key_share_app))
 
         // Handle icon issues for android versions < 23
         if(Build.VERSION.SDK_INT <= 23) {
-            context?.getColor(R.color.text_color)?.let { share?.icon?.setTint(it) }
-            val lang = findPreference<Preference>(APP_LANGUAGE)
-            context?.getColor(R.color.text_color)?.let { lang?.icon?.setTint(it) }
+            context?.getColor(com.presently.ui.R.color.text_color)?.let { share?.icon?.setTint(it) }
+            val lang = findPreference<Preference>(APP_LANGUAGE)!!
+            context?.getColor(com.presently.ui.R.color.text_color)?.let { lang?.icon?.setTint(it) }
         }
 
         share?.setOnPreferenceClickListener {
@@ -131,17 +131,17 @@ class SettingsFragment : PreferenceFragmentCompat(),
             true
         }
 
-        val privacy = findPreference<Preference>(getString(R.string.key_privacy_policy))
+        val privacy = findPreference<Preference>(getString(com.presently.strings.R.string.key_privacy_policy))
         privacy?.setOnPreferenceClickListener {
             openPrivacyPolicy()
             true
         }
-        val terms = findPreference<Preference>(getString(R.string.key_terms_conditions))
+        val terms = findPreference<Preference>(getString(com.presently.strings.R.string.key_terms_conditions))
         terms?.setOnPreferenceClickListener {
             openTermsAndConditions()
             true
         }
-        val oss = findPreference<Preference>(getString(R.string.key_open_source))
+        val oss = findPreference<Preference>(getString(com.presently.strings.R.string.key_open_source))
         oss?.setOnPreferenceClickListener {
             startActivity(Intent(context, OssLicensesMenuActivity::class.java))
             true
@@ -161,7 +161,7 @@ class SettingsFragment : PreferenceFragmentCompat(),
         val cadencePref = (findPreference<Preference>(BACKUP_CADENCE) as ListPreference)
 
         dropbox?.setOnPreferenceClickListener {
-            val wantsToLogin = preferenceScreen.sharedPreferences.getBoolean(BACKUP_TOKEN, false)
+            val wantsToLogin = preferenceScreen.sharedPreferences!!.getBoolean(BACKUP_TOKEN, false)
             if (!wantsToLogin) {
                 analytics.recordEvent(DROPBOX_DEAUTH)
                 lifecycleScope.launch {
@@ -219,7 +219,7 @@ class SettingsFragment : PreferenceFragmentCompat(),
 
     override fun onResume() {
         super.onResume()
-        val prefs = preferenceScreen.sharedPreferences
+        val prefs = preferenceScreen.sharedPreferences!!
 
         // Set up a listener whenever a key changes
         prefs.registerOnSharedPreferenceChangeListener(this)
@@ -241,7 +241,7 @@ class SettingsFragment : PreferenceFragmentCompat(),
 
     override fun onPause() {
         super.onPause()
-        preferenceScreen.sharedPreferences.unregisterOnSharedPreferenceChangeListener(this)
+        preferenceScreen.sharedPreferences!!.unregisterOnSharedPreferenceChangeListener(this)
     }
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String) {
@@ -277,10 +277,10 @@ class SettingsFragment : PreferenceFragmentCompat(),
                 val isOptedIn = settings.isOptedIntoAnalytics()
                 if (isOptedIn) {
                     analytics.optIntoAnalytics()
-                    Toast.makeText(context, R.string.analytics_opt_in_success, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), com.presently.strings.R.string.analytics_opt_in_success, Toast.LENGTH_SHORT).show()
                 } else {
                     analytics.optOutOfAnalytics()
-                    Toast.makeText(context, R.string.analytics_opt_out_success, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), com.presently.strings.R.string.analytics_opt_out_success, Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -296,11 +296,11 @@ class SettingsFragment : PreferenceFragmentCompat(),
         splitInstallManager.startInstall(request)
             .addOnSuccessListener {
                 requestId = it
-                Toast.makeText(context, R.string.loading_lang, Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), com.presently.strings.R.string.loading_lang, Toast.LENGTH_SHORT).show()
             }
             .addOnFailureListener { exception ->
                 crashReporter.logHandledException(exception)
-                Toast.makeText(context, "Error loading language", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Error loading language", Toast.LENGTH_SHORT).show()
             }
     }
 
@@ -385,7 +385,7 @@ class SettingsFragment : PreferenceFragmentCompat(),
                 )
             startActivity(browserIntent)
         } catch (activityNotFoundException: ActivityNotFoundException) {
-            Toast.makeText(context, R.string.no_app_found, Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), com.presently.strings.R.string.no_app_found, Toast.LENGTH_SHORT).show()
             crashReporter.logHandledException(activityNotFoundException)
         }
     }
@@ -394,13 +394,13 @@ class SettingsFragment : PreferenceFragmentCompat(),
         analytics.recordEvent(OPENED_SHARE_APP)
 
         try {
-            val appName = getString(R.string.app_name)
+            val appName = getString(com.presently.strings.R.string.app_name)
             val textIntent = Intent(Intent.ACTION_SEND)
             textIntent.type = "text/plain"
             textIntent.putExtra(Intent.EXTRA_SUBJECT, appName)
 
             val appPackageName = context?.packageName
-            val shareApp = getString(R.string.share_app_text)
+            val shareApp = getString(com.presently.strings.R.string.share_app_text)
             val shareText =
                 "$shareApp https://play.google.com/store/apps/details?id=$appPackageName"
             textIntent.putExtra(Intent.EXTRA_TEXT, shareText)
@@ -423,7 +423,7 @@ class SettingsFragment : PreferenceFragmentCompat(),
                 )
             startActivity(browserIntent)
         } catch (activityNotFoundException: ActivityNotFoundException) {
-            Toast.makeText(context, R.string.no_app_found, Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), com.presently.strings.R.string.no_app_found, Toast.LENGTH_SHORT).show()
             crashReporter.logHandledException(activityNotFoundException)
         }
     }
@@ -439,7 +439,7 @@ class SettingsFragment : PreferenceFragmentCompat(),
                 )
             startActivity(browserIntent)
         } catch (activityNotFoundException: ActivityNotFoundException) {
-            Toast.makeText(context, R.string.no_app_found, Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), com.presently.strings.R.string.no_app_found, Toast.LENGTH_SHORT).show()
             crashReporter.logHandledException(activityNotFoundException)
         }
     }
@@ -451,12 +451,12 @@ class SettingsFragment : PreferenceFragmentCompat(),
         val alertDialog: AlertDialog? = activity?.let {
             val builder = AlertDialog.Builder(it)
             builder.apply {
-                setTitle(R.string.import_data_dialog)
-                setMessage(R.string.import_data_dialog_message)
-                setPositiveButton(R.string.ok) { _, _ ->
+                setTitle(com.presently.strings.R.string.import_data_dialog)
+                setMessage(com.presently.strings.R.string.import_data_dialog_message)
+                setPositiveButton(com.presently.strings.R.string.ok) { _, _ ->
                     selectCSVFile()
                 }
-                setNegativeButton(R.string.cancel) { _, _ -> }
+                setNegativeButton(com.presently.strings.R.string.cancel) { _, _ -> }
             }
             // Create the AlertDialog
             builder.create()
@@ -476,13 +476,13 @@ class SettingsFragment : PreferenceFragmentCompat(),
                         importFromCsv(inputStream)
                     } else {
                         crashReporter.logHandledException(NullPointerException("inputStream is null, uri: $uri"))
-                        Toast.makeText(context, R.string.error_parsing, Toast.LENGTH_SHORT)
+                        Toast.makeText(requireContext(), com.presently.strings.R.string.error_parsing, Toast.LENGTH_SHORT)
                             .show()
                     }
                 }
             } else {
                 crashReporter.logHandledException(NullPointerException("URI was null when receiving file"))
-                Toast.makeText(context, R.string.file_not_csv, Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), com.presently.strings.R.string.file_not_csv, Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -495,7 +495,7 @@ class SettingsFragment : PreferenceFragmentCompat(),
             readCsvResultContact.launch("text/csv|text/comma-separated-values|application/csv")
         } catch (ex: ActivityNotFoundException) {
             crashReporter.logHandledException(ex)
-            Toast.makeText(context, R.string.no_app_found, Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), com.presently.strings.R.string.no_app_found, Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -518,12 +518,12 @@ class SettingsFragment : PreferenceFragmentCompat(),
             }
 
             //TODO move this hardcoded string to strings.xml
-            Toast.makeText(context, "Imported successfully!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Imported successfully!", Toast.LENGTH_SHORT).show()
         } catch (exception: Exception) {
             analytics.recordEvent(IMPORTING_BACKUP_ERROR)
             crashReporter.logHandledException(exception)
 
-            Toast.makeText(context, R.string.error_parsing, Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), com.presently.strings.R.string.error_parsing, Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -548,7 +548,7 @@ class SettingsFragment : PreferenceFragmentCompat(),
                 crashReporter.logHandledException(NullPointerException("URI was null after user selected file location"))
                 Toast.makeText(
                         context,
-                        R.string.error_creating_csv_file,
+                        com.presently.strings.R.string.error_creating_csv_file,
                         Toast.LENGTH_SHORT
                 ).show()
             }
@@ -567,8 +567,8 @@ class SettingsFragment : PreferenceFragmentCompat(),
 
     private val exportCallback: ExportCallback = object : ExportCallback {
         override fun onSuccess(uri: Uri) {
-            Snackbar.make(view!!, R.string.export_success, Snackbar.LENGTH_LONG)
-                .setAction(R.string.open) {
+            Snackbar.make(view!!, com.presently.strings.R.string.export_success, Snackbar.LENGTH_LONG)
+                .setAction(com.presently.strings.R.string.open) {
                     try {
                         val intent = Intent(Intent.ACTION_VIEW)
                         intent.setDataAndType(uri, "text/csv")
@@ -576,7 +576,7 @@ class SettingsFragment : PreferenceFragmentCompat(),
                         startActivity(intent)
                     } catch (e: ActivityNotFoundException) {
                         crashReporter.logHandledException(e)
-                        Toast.makeText(context, R.string.no_app_found, Toast.LENGTH_SHORT)
+                        Toast.makeText(requireContext(), com.presently.strings.R.string.no_app_found, Toast.LENGTH_SHORT)
                             .show()
                     }
                 }.show()

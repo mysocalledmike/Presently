@@ -12,7 +12,7 @@ class TimePreference(context: Context, attrs: AttributeSet) : DialogPreference(c
 
     init {
         isPersistent = true
-        dialogLayoutResource = R.layout.pref_time_dialog
+        dialogLayoutResource = com.presently.ui.R.layout.pref_time_dialog
     }
 
     var hour = 0

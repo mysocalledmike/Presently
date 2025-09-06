@@ -12,56 +12,56 @@ data class SharingViewDesign(
 val designs = listOf(
     SharingViewDesign(
         "original",
-        R.color.originalTimelineColor,
-        R.color.originalTimelineColor,
-        R.color.originalBackgroundColor,
+        com.presently.ui.R.color.originalTimelineColor,
+        com.presently.ui.R.color.originalTimelineColor,
+        com.presently.ui.R.color.originalBackgroundColor,
     ),
     SharingViewDesign(
         "moonlight",
-        R.color.moonlightMainTextAndButtonColor,
-        R.color.moonlightMainTextAndButtonColor,
-        R.color.moonlightBackgroundColor
+        com.presently.ui.R.color.moonlightMainTextAndButtonColor,
+        com.presently.ui.R.color.moonlightMainTextAndButtonColor,
+        com.presently.ui.R.color.moonlightBackgroundColor
     ),
     SharingViewDesign(
         "daisy",
-        R.color.daisyMainTextAndButtonColor,
-        R.color.daisyMainTextAndButtonColor,
-        R.color.daisyBackgroundColor
+        com.presently.ui.R.color.daisyMainTextAndButtonColor,
+        com.presently.ui.R.color.daisyMainTextAndButtonColor,
+        com.presently.ui.R.color.daisyBackgroundColor
     ),
     SharingViewDesign(
         "sunlight",
-        R.color.sunlightTimelineColor,
-        R.color.sunlightDateTextEntryScreenTextColor,
-        R.color.sunlightBackgroundColor
+        com.presently.ui.R.color.sunlightTimelineColor,
+        com.presently.ui.R.color.sunlightDateTextEntryScreenTextColor,
+        com.presently.ui.R.color.sunlightBackgroundColor
     ),
     SharingViewDesign(
         "rosie",
-        R.color.rosieMainTextAndButtonColor,
-        R.color.rosieHintQuoteTextColor,
-        R.color.rosieBackgroundColor
+        com.presently.ui.R.color.rosieMainTextAndButtonColor,
+        com.presently.ui.R.color.rosieHintQuoteTextColor,
+        com.presently.ui.R.color.rosieBackgroundColor
     ),
     SharingViewDesign(
         "dawn",
-        R.color.dawnMainTextAndButtonColor,
-        R.color.dawnMainTextAndButtonColor,
-        R.color.dawnBackgroundColor
+        com.presently.ui.R.color.dawnMainTextAndButtonColor,
+        com.presently.ui.R.color.dawnMainTextAndButtonColor,
+        com.presently.ui.R.color.dawnBackgroundColor
     ),
     SharingViewDesign(
         "katie",
-        R.color.katieTimelineColor,
-        R.color.katieDateTextEntryScreenTextColor,
-        R.color.katieBackgroundColor
+        com.presently.ui.R.color.katieTimelineColor,
+        com.presently.ui.R.color.katieDateTextEntryScreenTextColor,
+        com.presently.ui.R.color.katieBackgroundColor
     ),
     SharingViewDesign(
         "brittany",
-        R.color.brittanyDateTextEntryScreenTextColor,
-        R.color.brittanyDateTextEntryScreenTextColor,
-        R.color.brittanyBackgroundColor
+        com.presently.ui.R.color.brittanyDateTextEntryScreenTextColor,
+        com.presently.ui.R.color.brittanyDateTextEntryScreenTextColor,
+        com.presently.ui.R.color.brittanyBackgroundColor
     ),
     SharingViewDesign(
         "matisse",
-        R.color.matisseMainTextAndButtonColor,
-        R.color.matisseMainTextAndButtonColor,
-        R.color.matisseBackgroundColor
+        com.presently.ui.R.color.matisseMainTextAndButtonColor,
+        com.presently.ui.R.color.matisseMainTextAndButtonColor,
+        com.presently.ui.R.color.matisseBackgroundColor
     ),
 )

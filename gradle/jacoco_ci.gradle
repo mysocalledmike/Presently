@@ -20,7 +20,7 @@ subprojects { prj ->
         apply plugin: 'jacoco'
 
         jacoco {
-            toolVersion = "0.8.7"
+            toolVersion = "0.8.12"
         }
 
         tasks.withType(Test) {
@@ -33,9 +33,9 @@ subprojects { prj ->
             description = 'Generate Jacoco coverage'
 
             reports {
-                csv.enabled = true
-                xml.enabled = false
-                html.enabled = true
+                csv.required = true
+                xml.required = false
+                html.required = true
             }
 
             // Excluded files
@@ -92,7 +92,7 @@ subprojects { prj ->
 apply plugin: 'jacoco'
 
 jacoco {
-    toolVersion "0.8.7"
+    toolVersion "0.8.12"
 }
 
 /**
@@ -122,13 +122,13 @@ task jacocoFullReport(type: JacocoReport, group: 'Coverage reports') {
     executionData.setFrom files(projects.jacocoReport.executionData)
 
     reports {
-        xml.enabled = true
+        xml.required = true
         html {
-            enabled true
+            required = true
             destination file('build/reports/jacoco/html')
         }
         csv {
-            enabled true
+            required = true
             destination file('build/reports/jacoco/jacocoFullReport.csv')
         }
     }
